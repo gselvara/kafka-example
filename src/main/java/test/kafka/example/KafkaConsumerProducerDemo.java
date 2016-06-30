@@ -24,22 +24,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaConsumerProducerDemo {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(KafkaConsumerProducerDemo.class);
-	
+
 	@PostConstruct
 	public void startProducing() {
 
 		logger.info("KafkaConsumerProducerDemo.startProducing");
-		
-        boolean isAsync = true;
 
-        Producer producerThread = new Producer(KafkaProperties.TOPIC, isAsync);
-        producerThread.start();
+		boolean isAsync = true;
 
-        logger.info("KafkaConsumerProducerDemo.startProducing END");
-//        Consumer consumerThread = new Consumer(KafkaProperties.TOPIC);
-//        consumerThread.start();
+		Producer producerThread = new Producer(KafkaProperties.TOPIC, isAsync);
+		producerThread.start();
 
-    }
+		Consumer consumerThread = new Consumer(KafkaProperties.TOPIC);
+		consumerThread.start();
+
+		logger.info("KafkaConsumerProducerDemo.startProducing END");
+	}
 }

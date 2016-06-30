@@ -61,6 +61,12 @@ public class Producer extends Thread {
                 }
             }
             ++messageNo;
+
+            try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				//Do nothing
+			}
         }
     }
 }
